@@ -1,4 +1,3 @@
-# Gestion_des_pharmacie_et_des_Gardes
 # FinalProject-Gestion-des-pharmacies-gardes
 L'objectif du projet de localisation des pharmacies est de développer une plateforme en ligne permettant aux utilisateurs de localiser aisément les pharmacies 
 en fonction de leur ville et de leur zone, tout en fournissant des informations sur les pharmacies de garde disponibles.
