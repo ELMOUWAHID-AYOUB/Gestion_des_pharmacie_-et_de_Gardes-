@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PharmacieDeGardeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacieApi</a> &gt; <a href="index.source.html" class="el_package">com.example.pharmacieapi.service</a> &gt; <span class="el_source">PharmacieDeGardeService.java</span></div><h1>PharmacieDeGardeService.java</h1><pre class="source lang-java linenums">package com.example.pharmacieapi.service;
+
+
+import com.example.pharmacieapi.entity.Garde;
+import com.example.pharmacieapi.entity.Pharmacie;
+import com.example.pharmacieapi.entity.PharmacieDeGarde;
+import com.example.pharmacieapi.repositories.PharmacieDeGardeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+<span class="fc" id="L14">public class PharmacieDeGardeService {</span>
+    @Autowired
+    private PharmacieDeGardeRepository repository;
+
+    public PharmacieDeGarde addPharmacieDeGarde(PharmacieDeGarde p){
+
+<span class="nc" id="L20">    return repository.save(p);</span>
+    }
+    public List&lt;PharmacieDeGarde&gt; getAllPharmaciesDeGarde(){
+<span class="nc" id="L23">        return repository.findAll();</span>
+    }
+    public List&lt;PharmacieDeGarde&gt; getAllPharmaciesDeGardeByPharmacie(Pharmacie pharmacie){
+<span class="nc" id="L26">        return repository.findAllByPharmacie(pharmacie);</span>
+    }
+
+    public List&lt;PharmacieDeGarde&gt; getPharmacieDeGardeHistorique(int id){
+<span class="nc" id="L30">        return repository.findPharmacieGardeHistorique(id);</span>
+    }
+
+    public List&lt;PharmacieDeGarde&gt; getAllPharmaciesDeGardeDispo() {
+<span class="nc" id="L34">        return repository.findAllPharmacieDispo();</span>
+    }
+
+    public List&lt;PharmacieDeGarde&gt; getAllPharmaciesDeGardeEnGarde() {
+<span class="nc" id="L38">        return repository.findAllPharmacieEnGarde();</span>
+    }
+
+    public List&lt;PharmacieDeGarde&gt; findAllPharmacieGardeByVille(int id) {
+<span class="nc" id="L42">        return repository.findAllPharmacieGardeByVille(id);</span>
+    }
+
+    public List&lt;PharmacieDeGarde&gt; findAllPharmacieGardeByZone(int id) {
+<span class="nc" id="L46">        return repository.findAllPharmacieGardeByZone(id);</span>
+    }
+    public List&lt;PharmacieDeGarde&gt; findAllPharmacieGardeEnGardeByGardeId(int id) {
+<span class="nc" id="L49">        return repository.findAllPharmacieGardeEnGardeByGardeId(id);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

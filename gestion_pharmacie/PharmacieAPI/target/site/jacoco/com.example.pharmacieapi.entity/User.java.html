@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacieApi</a> &gt; <a href="index.source.html" class="el_package">com.example.pharmacieapi.entity</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package com.example.pharmacieapi.entity;
+
+import jakarta.persistence.*;
+
+import java.util.Date;
+
+@Entity
+@Table(name = &quot;users&quot;)
+<span class="fc" id="L9">public class User {</span>
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int user_id;
+    private String first_name;
+    private String last_name;
+    private String email;
+    private String password;
+    private Date created_at;
+    @Transient
+    private Date updated_at;
+
+    @OneToOne(mappedBy = &quot;user&quot;,fetch=FetchType.EAGER)
+    private Pharmacie pharmacie;
+
+    public int getUser_id() {
+<span class="nc" id="L26">        return user_id;</span>
+    }
+
+    public void setUser_id(int user_id) {
+<span class="nc" id="L30">        this.user_id = user_id;</span>
+<span class="nc" id="L31">    }</span>
+
+    public String getFirst_name() {
+<span class="nc" id="L34">        return first_name;</span>
+    }
+
+    public void setFirst_name(String first_name) {
+<span class="nc" id="L38">        this.first_name = first_name;</span>
+<span class="nc" id="L39">    }</span>
+
+    public String getLast_name() {
+<span class="nc" id="L42">        return last_name;</span>
+    }
+
+    public void setLast_name(String last_name) {
+<span class="nc" id="L46">        this.last_name = last_name;</span>
+<span class="nc" id="L47">    }</span>
+
+    public String getEmail() {
+<span class="nc" id="L50">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="fc" id="L54">        this.email = email;</span>
+<span class="fc" id="L55">    }</span>
+
+    public String getPassword() {
+<span class="nc" id="L58">        return password;</span>
+    }
+
+    public void setPassword(String password) {
+<span class="fc" id="L62">        this.password = password;</span>
+<span class="fc" id="L63">    }</span>
+
+    public Date getCreated_at() {
+<span class="nc" id="L66">        return created_at;</span>
+    }
+
+    public void setCreated_at(Date created_at) {
+<span class="nc" id="L70">        this.created_at = created_at;</span>
+<span class="nc" id="L71">    }</span>
+
+    public Date getUpdated_at() {
+<span class="nc" id="L74">        return updated_at;</span>
+    }
+
+    public void setUpdated_at(Date updated_at) {
+<span class="nc" id="L78">        this.updated_at = updated_at;</span>
+<span class="nc" id="L79">    }</span>
+
+    public Pharmacie getPharmacie() {
+<span class="nc" id="L82">        return pharmacie;</span>
+    }
+
+    public void setPharmacie(Pharmacie pharmacie) {
+<span class="nc" id="L86">        this.pharmacie = pharmacie;</span>
+<span class="nc" id="L87">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

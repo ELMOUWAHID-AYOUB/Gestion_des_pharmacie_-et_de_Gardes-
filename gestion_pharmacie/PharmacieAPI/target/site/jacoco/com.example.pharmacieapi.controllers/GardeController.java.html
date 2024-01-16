@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GardeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacieApi</a> &gt; <a href="index.source.html" class="el_package">com.example.pharmacieapi.controllers</a> &gt; <span class="el_source">GardeController.java</span></div><h1>GardeController.java</h1><pre class="source lang-java linenums">package com.example.pharmacieapi.controllers;
+
+import com.example.pharmacieapi.entity.Garde;
+import com.example.pharmacieapi.service.GardeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/gardes&quot;)
+@CrossOrigin(&quot;http://localhost:3000&quot;)
+<span class="fc" id="L13">public class GardeController {</span>
+
+    @Autowired
+    private GardeService service;
+
+    @GetMapping(&quot;/all&quot;)
+    public List&lt;Garde&gt; findAllGarde(){
+<span class="nc" id="L20">        return service.findAllGardes();</span>
+    }
+
+    @PostMapping(&quot;/add&quot;)
+    public Garde save(@RequestBody Garde g) {
+<span class="nc" id="L25">        return service.addGarde(g);</span>
+    }
+
+    @GetMapping(&quot;/garde/id={id}&quot;)
+    public Garde findGardeById(@PathVariable int id){
+
+<span class="nc" id="L31">        return service.findGardeById(id);</span>
+    }
+    @PutMapping(&quot;/updateGarde/id={id}&quot;)
+    public Garde updateGarde(@RequestBody Garde g,@PathVariable int id){
+
+<span class="nc" id="L36">        return service.updateGarde(g,id);</span>
+    }
+
+    @DeleteMapping(&quot;/deleteGarde/id={id}&quot;)
+    public String deleteGarde(@PathVariable int id){
+
+<span class="nc" id="L42">        return service.deleteGarde(id);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

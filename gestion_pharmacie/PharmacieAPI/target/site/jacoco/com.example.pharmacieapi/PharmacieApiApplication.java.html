@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PharmacieApiApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacieApi</a> &gt; <a href="index.source.html" class="el_package">com.example.pharmacieapi</a> &gt; <span class="el_source">PharmacieApiApplication.java</span></div><h1>PharmacieApiApplication.java</h1><pre class="source lang-java linenums">package com.example.pharmacieapi;
+
+import com.example.pharmacieapi.controllers.PharmacieDeGardeController;
+import com.example.pharmacieapi.entity.*;
+import com.example.pharmacieapi.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import java.text.ParseException;
+
+@SpringBootApplication
+<span class="fc" id="L14">public class PharmacieApiApplication implements Runnable {</span>
+
+
+
+	@Autowired
+	PharmacieDeGardeController pharmacieDeGardeController;
+	public static void main(String[] args) {
+<span class="nc" id="L21">		SpringApplication.run(PharmacieApiApplication.class, args);</span>
+<span class="nc" id="L22">	}</span>
+
+	@Override
+	public void run() {
+<span class="nc" id="L26">		pharmacieDeGardeController = new PharmacieDeGardeController();</span>
+		try {
+<span class="nc bnc" id="L28" title="All 2 branches missed.">			for (PharmacieDeGarde p: pharmacieDeGardeController.getAllPharmaciesDeGardeByPharmacieId(2)</span>
+			) {
+<span class="nc" id="L30">				System.out.println(p.getPharmacieDeGardePK().getPharmaciePK()+&quot;&quot;);</span>
+<span class="nc" id="L31">			}</span>
+<span class="nc" id="L32">		} catch (ParseException e) {</span>
+<span class="nc" id="L33">		}</span>
+<span class="nc" id="L34">	}</span>
+
+	@Bean
+	CommandLineRunner commandLineRunner(UserRepository userRepository , VilleRepository villeRepository , ZoneRepository zoneRepository, GardeRepository gardeRepository , PharmacieRepository pharmacieRepository ,PharmacieDeGardeRepository pharmacieDeGardeRepository) {
+<span class="fc" id="L38">		return args -&gt; {</span>
+<span class="fc" id="L39">			User user = new User();</span>
+<span class="fc" id="L40">			user.setEmail(&quot;admin@admin&quot;);</span>
+<span class="fc" id="L41">			user.setPassword(&quot;$2y$10$q.WBn19jQ0OewWBAk9dB2eUvBc4GkkVUdsAiqVUCBfId6jr6fTF.G&quot;);</span>
+<span class="fc" id="L42">			userRepository.save(user);</span>
+
+
+
+<span class="fc" id="L46">			User user1 = new User();</span>
+<span class="fc" id="L47">			user1.setEmail(&quot;user@user&quot;);</span>
+<span class="fc" id="L48">			user1.setPassword(&quot;$2y$10$mfjx0bL6mlkiSvi7GfZEYuXFEFoyZA3CNrbux/S/IY4qbvjKI7l9a&quot;);</span>
+<span class="fc" id="L49">			userRepository.save(user1);</span>
+
+
+
+<span class="fc" id="L53">			Ville ville = new Ville();</span>
+<span class="fc" id="L54">			ville.setNom(&quot;Casablanca&quot;);</span>
+<span class="fc" id="L55">			villeRepository.save(ville);</span>
+
+
+
+<span class="fc" id="L59">			Zone zone= new Zone();</span>
+<span class="fc" id="L60">			zone.setNom(&quot;ainChok&quot;);</span>
+<span class="fc" id="L61">			zone.setVille(ville);</span>
+<span class="fc" id="L62">			zoneRepository.save(zone);</span>
+
+
+
+<span class="fc" id="L66">			Zone zone1= new Zone();</span>
+<span class="fc" id="L67">			zone1.setNom(&quot;sidimouman&quot;);</span>
+<span class="fc" id="L68">			zone1.setVille(ville);</span>
+<span class="fc" id="L69">			zoneRepository.save(zone1);</span>
+
+
+
+<span class="fc" id="L73">			Zone zone2= new Zone();</span>
+<span class="fc" id="L74">			zone2.setNom(&quot;AinDiab&quot;);</span>
+<span class="fc" id="L75">			zone2.setVille(ville);</span>
+<span class="fc" id="L76">			zoneRepository.save(zone2);</span>
+
+<span class="fc" id="L78">			Garde garde = new Garde();</span>
+<span class="fc" id="L79">			garde.setType(&quot;24/24&quot;);</span>
+<span class="fc" id="L80">			gardeRepository.save(garde);</span>
+
+
+<span class="fc" id="L83">			Garde garde1 = new Garde();</span>
+<span class="fc" id="L84">			garde1.setType(&quot;20:00--&gt;9:00&quot;);</span>
+<span class="fc" id="L85">			gardeRepository.save(garde1);</span>
+
+
+
+<span class="fc" id="L89">			Garde garde2 = new Garde();</span>
+<span class="fc" id="L90">			garde2.setType(&quot;9:00--&gt;20:00&quot;);</span>
+<span class="fc" id="L91">			gardeRepository.save(garde2);</span>
+
+
+<span class="fc" id="L94">			Pharmacie pharmacie= new Pharmacie();</span>
+<span class="fc" id="L95">			pharmacie.setNom(&quot;PharmacieSalam 1&quot;);</span>
+<span class="fc" id="L96">			pharmacie.setEtat(1);</span>
+<span class="fc" id="L97">			pharmacie.setTelephone(&quot;0522526617&quot;);</span>
+<span class="fc" id="L98">			pharmacie.setAdresse(&quot;Rue 226 N°23-25&quot;);</span>
+<span class="fc" id="L99">			pharmacie.setUser(user1);</span>
+<span class="fc" id="L100">			pharmacie.setLat(33.54249458265374);</span>
+<span class="fc" id="L101">			pharmacie.setLog(-7.598850189005235);</span>
+<span class="fc" id="L102">			pharmacie.setZone(zone);</span>
+<span class="fc" id="L103">			pharmacieRepository.save(pharmacie);</span>
+
+
+
+<span class="fc" id="L107">			Pharmacie pharmacie1= new Pharmacie();</span>
+<span class="fc" id="L108">			pharmacie1.setNom(&quot;PharmacieSalam 2&quot;);</span>
+<span class="fc" id="L109">			pharmacie1.setEtat(1);</span>
+<span class="fc" id="L110">			pharmacie1.setTelephone(&quot;0545678934&quot;);</span>
+<span class="fc" id="L111">			pharmacie1.setAdresse(&quot;Rue 216 N°23-25 &quot;);</span>
+<span class="fc" id="L112">			pharmacie1.setUser(user1);</span>
+<span class="fc" id="L113">			pharmacie1.setLat(33.59261910577268);</span>
+<span class="fc" id="L114">			pharmacie1.setLog(-7.608105631663111);</span>
+<span class="fc" id="L115">			pharmacie1.setZone(zone1);</span>
+<span class="fc" id="L116">			pharmacieRepository.save(pharmacie1);</span>
+
+
+
+<span class="fc" id="L120">			Pharmacie pharmacie2= new Pharmacie();</span>
+<span class="fc" id="L121">			pharmacie2.setNom(&quot;PharmacieSalam 3&quot;);</span>
+<span class="fc" id="L122">			pharmacie2.setEtat(1);</span>
+<span class="fc" id="L123">			pharmacie2.setTelephone(&quot;0529004477&quot;);</span>
+<span class="fc" id="L124">			pharmacie2.setAdresse(&quot;Ave Mohamed Taieb Naciri&quot;);</span>
+<span class="fc" id="L125">			pharmacie2.setUser(user1);</span>
+<span class="fc" id="L126">			pharmacie2.setLat(33.55262384909916);</span>
+<span class="fc" id="L127">			pharmacie2.setLog(-7.667797769233655);</span>
+<span class="fc" id="L128">			pharmacie2.setZone(zone2);</span>
+<span class="fc" id="L129">			pharmacieRepository.save(pharmacie2);</span>
+
+
+<span class="fc" id="L132">			Pharmacie pharmacie3= new Pharmacie();</span>
+<span class="fc" id="L133">			pharmacie3.setNom(&quot;PharmacieSalam 4&quot;);</span>
+<span class="fc" id="L134">			pharmacie3.setEtat(0);</span>
+<span class="fc" id="L135">			pharmacie3.setTelephone(&quot;0588453627&quot;);</span>
+<span class="fc" id="L136">			pharmacie3.setAdresse(&quot;Ave Mohamed Taieb Naciri&quot;);</span>
+<span class="fc" id="L137">			pharmacie3.setUser(user1);</span>
+<span class="fc" id="L138">			pharmacie3.setLat(33.5880432199153);</span>
+<span class="fc" id="L139">			pharmacie3.setLog(-7.619435282669442);</span>
+<span class="fc" id="L140">			pharmacie3.setZone(zone2);</span>
+<span class="fc" id="L141">			pharmacieRepository.save(pharmacie3);</span>
+
+
+<span class="fc" id="L144">			Pharmacie pharmacie4= new Pharmacie();</span>
+<span class="fc" id="L145">			pharmacie4.setNom(&quot;vzvdvzvzdv&quot;);</span>
+<span class="fc" id="L146">			pharmacie4.setEtat(2);</span>
+<span class="fc" id="L147">			pharmacie4.setTelephone(&quot;zdvfvzdv&quot;);</span>
+<span class="fc" id="L148">			pharmacie4.setAdresse(&quot;dffzevzrvzv&quot;);</span>
+<span class="fc" id="L149">			pharmacie4.setUser(user1);</span>
+<span class="fc" id="L150">			pharmacie4.setLat(33.55262384909916);</span>
+<span class="fc" id="L151">			pharmacie4.setLog(-7.667797769233655);</span>
+<span class="fc" id="L152">			pharmacie4.setZone(zone2);</span>
+<span class="fc" id="L153">			pharmacieRepository.save(pharmacie4);</span>
+
+
+
+
+<span class="fc" id="L158">		};</span>
+
+
+	}
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

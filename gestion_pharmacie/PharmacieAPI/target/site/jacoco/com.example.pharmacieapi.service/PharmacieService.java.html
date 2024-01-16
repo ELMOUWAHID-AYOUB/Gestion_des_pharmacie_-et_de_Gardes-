@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PharmacieService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacieApi</a> &gt; <a href="index.source.html" class="el_package">com.example.pharmacieapi.service</a> &gt; <span class="el_source">PharmacieService.java</span></div><h1>PharmacieService.java</h1><pre class="source lang-java linenums">package com.example.pharmacieapi.service;
+
+import com.example.pharmacieapi.entity.Pharmacie;
+import com.example.pharmacieapi.entity.PharmacieDeGarde;
+import com.example.pharmacieapi.entity.User;
+import com.example.pharmacieapi.repositories.PharmacieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+<span class="fc" id="L14">public class PharmacieService {</span>
+
+    @Autowired
+    private PharmacieRepository repository;
+    @Autowired
+    private PharmacieDeGardeService pharmacieDeGardeService;
+
+    public Pharmacie addPharmacie(Pharmacie p){
+<span class="nc" id="L22">        return repository.save(p);</span>
+    }
+
+    public Pharmacie findPharmacieByUser(User user){
+<span class="nc" id="L26">        return repository.findPharmacieByUser(user);</span>
+    }
+
+    public List&lt;Pharmacie&gt; findAllPharmacie(){
+
+<span class="nc" id="L31">        return repository.findAll();</span>
+    }
+
+    public Pharmacie  findPharmacieById(int id){
+
+<span class="nc" id="L36">        return repository.findById(id).orElse(null);</span>
+    }
+
+    public String deletePharmacie(int id){
+<span class="nc" id="L40">        repository.deleteById(id);</span>
+<span class="nc" id="L41">        return &quot;Pharmacie &quot;+id+&quot; est supprimé !!&quot;;</span>
+    }
+
+    public Pharmacie updatePharmacie(Pharmacie p,int id){
+<span class="nc" id="L45">        return repository.findById(id).map(</span>
+                pharmacie -&gt; {
+<span class="nc" id="L47">                    pharmacie.setNom(p.getNom());</span>
+<span class="nc" id="L48">                    pharmacie.setAdresse(p.getAdresse());</span>
+<span class="nc" id="L49">                    pharmacie.setLat(p.getLat());</span>
+<span class="nc" id="L50">                    pharmacie.setLog(p.getLog());</span>
+<span class="nc" id="L51">                    pharmacie.setZone(p.getZone());</span>
+<span class="nc" id="L52">                    return repository.save(pharmacie);</span>
+                }
+<span class="nc" id="L54">        ).orElse(null);</span>
+    }
+
+    public Pharmacie acceptePharmacie(int id){
+<span class="nc" id="L58">        return repository.findById(id).map(</span>
+                pharmacie -&gt; {
+<span class="nc" id="L60">                    pharmacie.setEtat(1);</span>
+<span class="nc" id="L61">                    return repository.save(pharmacie);</span>
+                }
+<span class="nc" id="L63">        ).orElse(null);</span>
+    }
+
+    public Pharmacie refusPharmacie(int id){
+<span class="nc" id="L67">        return repository.findById(id).map(</span>
+                pharmacie -&gt; {
+<span class="nc" id="L69">                    pharmacie.setEtat(2);</span>
+<span class="nc" id="L70">                    return repository.save(pharmacie);</span>
+                }
+<span class="nc" id="L72">        ).orElse(null);</span>
+    }
+
+    public List&lt;Pharmacie&gt; findAllPharmacieEnAttente() {
+<span class="nc" id="L76">        return repository.findAllPharmacieAttente();</span>
+    }
+
+    public List&lt;Pharmacie&gt; findAllPharmacieAccepte() {
+<span class="nc" id="L80">        return repository.findAllPharmacieAccepte();</span>
+    }
+
+    public List&lt;Pharmacie&gt; findAllPharmacieRefus() {
+<span class="nc" id="L84">        return repository.findAllPharmacieRefus();</span>
+    }
+
+    public List&lt;Pharmacie&gt; findAllPharmacieByVille(int id) {
+<span class="nc" id="L88">        return repository.findAllPharmacieByVille(id);</span>
+    }
+
+    public List&lt;Pharmacie&gt; findAllPharmacieByZone(int id) {
+<span class="nc" id="L92">        return repository.findAllPharmacieByZone(id);</span>
+    }
+    public List&lt;Pharmacie&gt; findAllPharmacieByGarde(int id) {
+
+<span class="nc" id="L96">        List&lt;Pharmacie&gt; pharmacies = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L97">        List&lt;PharmacieDeGarde&gt; pharmacieDeGardes = pharmacieDeGardeService.findAllPharmacieGardeEnGardeByGardeId(id);</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        for (PharmacieDeGarde p :pharmacieDeGardes) {</span>
+<span class="nc" id="L99">            pharmacies.add(p.getPharmacie());</span>
+<span class="nc" id="L100">        }</span>
+<span class="nc" id="L101">        return pharmacies;</span>
+
+    }
+
+    public List&lt;Pharmacie&gt; findAllPharmacieDispoByVille(int id) {
+<span class="nc" id="L106">        return repository.findPharmcieDispoByVille(id);</span>
+    }
+
+    public List&lt;Pharmacie&gt; findAllPharmacieDispoByZone(int id) {
+<span class="nc" id="L110">        return repository.findPharmcieDispoByZone(id);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

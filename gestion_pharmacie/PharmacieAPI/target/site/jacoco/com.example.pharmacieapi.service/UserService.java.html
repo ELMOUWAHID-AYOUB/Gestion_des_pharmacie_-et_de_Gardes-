@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacieApi</a> &gt; <a href="index.source.html" class="el_package">com.example.pharmacieapi.service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package com.example.pharmacieapi.service;
+
+import com.example.pharmacieapi.entity.User;
+import com.example.pharmacieapi.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+<span class="fc" id="L12">public class UserService {</span>
+
+    @Autowired
+    UserRepository userRepository;
+
+    public int registerNewUserServiceMethod(String fname, String lname, String email, String password){
+<span class="nc" id="L18">        return userRepository.registerNewUser(fname,lname,email,password);</span>
+    }
+    // End Of Register New User Service Method.
+
+
+    public List&lt;String&gt; checkUserEmail(String email){
+<span class="nc" id="L24">        return userRepository.checkUserEmail(email);</span>
+    }
+    // End Of Check User Email Services Method.
+
+    public String checkUserPasswordByEmail(String email){
+<span class="nc" id="L29">        return userRepository.checkUserPasswordByEmail(email);</span>
+    }
+    // End Of Check User Password Services Method.
+
+    public User getUserById(int id){
+<span class="nc" id="L34">        Optional&lt;User&gt; optionalUser = userRepository.findById(id);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if(optionalUser.isPresent()){</span>
+<span class="nc" id="L36">            return optionalUser.get();</span>
+        }
+<span class="nc" id="L38">        return null ;</span>
+
+    }
+
+    public User getUserDetailsByEmail(String email){
+<span class="nc" id="L43">        return userRepository.GetUserDetailsByEmail(email);</span>
+    }
+    // End Of Get User Details By Email.
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

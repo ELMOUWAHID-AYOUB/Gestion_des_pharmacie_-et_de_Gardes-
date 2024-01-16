@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PharmacieDeGardeRelation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacieApi</a> &gt; <a href="index.source.html" class="el_package">com.example.pharmacieapi.entity</a> &gt; <span class="el_source">PharmacieDeGardeRelation.java</span></div><h1>PharmacieDeGardeRelation.java</h1><pre class="source lang-java linenums">package com.example.pharmacieapi.entity;
+
+
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
+
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class PharmacieDeGardeRelation implements Serializable {
+
+
+    private int pharmaciePK;
+	private int gardePK;
+	private Date dateDebut;
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L21">		return Objects.hash(pharmaciePK,gardePK);</span>
+	}
+
+	@Override
+	public boolean equals(Object o) {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">		if (this == o) return true;</span>
+<span class="nc bnc" id="L27" title="All 4 branches missed.">		if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L28">		PharmacieDeGardeRelation address = (PharmacieDeGardeRelation) o;</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">		return Objects.equals(pharmaciePK, address.pharmaciePK) &amp;&amp;</span>
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">				Objects.equals(gardePK, address.gardePK);</span>
+	}
+
+	public PharmacieDeGardeRelation(int pharmaciePK, int gardePK,Date dateDebut) {
+<span class="nc" id="L35">		super();</span>
+<span class="nc" id="L36">		this.pharmaciePK = pharmaciePK;</span>
+<span class="nc" id="L37">		this.gardePK = gardePK;</span>
+<span class="nc" id="L38">		this.dateDebut=dateDebut;</span>
+<span class="nc" id="L39">	}</span>
+
+
+	public int getPharmaciePK() {
+<span class="nc" id="L43">		return pharmaciePK;</span>
+	}
+
+	public void setPharmaciePK(int pharmaciePK) {
+<span class="nc" id="L47">		this.pharmaciePK = pharmaciePK;</span>
+<span class="nc" id="L48">	}</span>
+
+	public int getGardePK() {
+<span class="nc" id="L51">		return gardePK;</span>
+	}
+
+	public void setGardePK(int gardePK) {
+<span class="nc" id="L55">		this.gardePK = gardePK;</span>
+<span class="nc" id="L56">	}</span>
+
+	public Date getDateDebut() {
+<span class="nc" id="L59">		return dateDebut;</span>
+	}
+
+	public void setDateDebut(Date dateDebut) {
+<span class="nc" id="L63">		this.dateDebut = dateDebut;</span>
+<span class="nc" id="L64">	}</span>
+
+<span class="nc" id="L66">	public PharmacieDeGardeRelation() {</span>
+
+<span class="nc" id="L68">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

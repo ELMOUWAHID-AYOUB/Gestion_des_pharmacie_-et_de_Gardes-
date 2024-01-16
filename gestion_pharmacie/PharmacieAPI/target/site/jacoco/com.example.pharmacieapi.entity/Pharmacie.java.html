@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pharmacie.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacieApi</a> &gt; <a href="index.source.html" class="el_package">com.example.pharmacieapi.entity</a> &gt; <span class="el_source">Pharmacie.java</span></div><h1>Pharmacie.java</h1><pre class="source lang-java linenums">package com.example.pharmacieapi.entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Entity(name = &quot;Pharmacie&quot;)
+@Table(name = &quot;Pharmacie&quot;)
+<span class="pc bnc" id="L14" title="All 74 branches missed.">@Data</span>
+<span class="nc" id="L15">@AllArgsConstructor</span>
+public class Pharmacie {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+<span class="nc" id="L20">	private int id;</span>
+<span class="nc" id="L21">	private String nom;</span>
+<span class="nc" id="L22">	private String adresse;</span>
+<span class="nc" id="L23">	private String telephone;</span>
+<span class="nc" id="L24">	private Double lat;</span>
+<span class="nc" id="L25">	private Double log;</span>
+<span class="nc" id="L26">	private int etat;</span>
+
+	@ManyToOne
+	@JoinColumn(name = &quot;zone_id&quot;)
+<span class="nc" id="L30">	private Zone zone;</span>
+
+	@OneToMany(mappedBy = &quot;pharmacie&quot;)
+	@JsonIgnore
+<span class="nc" id="L34">	private List&lt;PharmacieDeGarde&gt; gardes ;</span>
+
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = &quot;user_id&quot;)
+	@JsonIgnore
+
+<span class="nc" id="L40">	private User user;</span>
+	public void addPharmacieDeGarde(PharmacieDeGarde garde){
+<span class="nc" id="L42">		this.gardes.add(garde);</span>
+<span class="nc" id="L43">		garde.setPharmacie(this);</span>
+<span class="nc" id="L44">	}</span>
+
+<span class="fc" id="L46">	public Pharmacie() {</span>
+<span class="fc" id="L47">		this.gardes=new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L49">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
