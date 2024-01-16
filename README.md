@@ -191,6 +191,8 @@ en fonction de leur ville et de leur zone, tout en fournissant des informations 
 
 # video demo
 
+https://github.com/ELMOUWAHID-AYOUB/Gestion_des_pharmacie_et_des_Gardes/assets/148088062/0c12d57a-0ecd-4a94-9672-abf17a89f34b
+
 
 
 
